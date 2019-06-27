@@ -1,0 +1,13 @@
+$main-color: lighten(black, 30%);
+
+.Calculator {
+    position: absolute;
+    background-color: $main-color;
+    height: 500px;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    box-sizing: border-box;
+}

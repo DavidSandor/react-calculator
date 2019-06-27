@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './Calculator.scss';
+import Display from '../Components/Display';
 
 class Calculator extends Component {
     state = {
@@ -7,7 +9,9 @@ class Calculator extends Component {
     }
 
     render(){
-        return <div></div>
+        return <div className='Calculator'>
+            <Display result='5' operations='2+3'></Display>
+        </div>
     }
 }
 
