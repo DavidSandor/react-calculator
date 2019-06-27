@@ -2,40 +2,50 @@ import React, { Component } from 'react';
 import './Calculator.scss';
 import Display from '../Components/Display';
 import Button from '../Components/Button';
-
+import Calculate from '../BusinessLogic/Operations';
 
 class Calculator extends Component {
     state = {
-        operationChain: [],
-        result: 0
+        operationChain: '0',
+        result: '0'
+    }
+
+    buttonClickHandler = (buttonInput) => {
+        
+        const newChain = this.state.operationChain === '0' ? buttonInput : this.state.operationChain + buttonInput;
+
+        const newResult = Calculate(newChain);
+
+        console.log(newChain);
+
+        this.setState({
+            operationChain: newChain,
+            result: newResult
+        });        
+    }
+
+    buttonFactory = (contents) => {
+        const buttons = contents.map(
+            content => <Button key={content} content={content} buttonClickHandler={(event) => this.buttonClickHandler(content)}/>
+            )
+            
+        return buttons;
     }
 
     render(){
         return <div className='Calculator'>
-            <Display result={this.state.result} operations='2+3'></Display>
+            <Display result={this.state.result} operations={this.state.operationChain}></Display>
             <div className='FlexRow'>
-                <Button content='7' ></Button>
-                <Button content='8' ></Button>
-                <Button content='9' ></Button>
-                <Button content='/' ></Button>
+                {this.buttonFactory(['7', '8', '9', '/'])}
             </div>
             <div className='FlexRow'>
-                <Button content='4' ></Button>
-                <Button content='5' ></Button>
-                <Button content='6' ></Button>
-                <Button content='x' ></Button>
+                {this.buttonFactory(['4', '5', '6', 'x'])}
             </div>
             <div className='FlexRow'>
-                <Button content='1' ></Button>
-                <Button content='2' ></Button>
-                <Button content='3' ></Button>
-                <Button content='-' ></Button>
+                {this.buttonFactory(['1', '2', '3', '-'])}
             </div>
             <div className='FlexRow'>
-                <Button content='0' ></Button>
-                <Button content='.' ></Button>
-                <Button content='CLR' ></Button>
-                <Button content='+' ></Button>
+                {this.buttonFactory(['0', '.', 'CLR', '+'])}
             </div>
         </div>
     }

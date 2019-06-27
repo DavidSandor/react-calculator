@@ -9,5 +9,10 @@
     p{
         text-align: right;
         margin: 0;
+
+        &:first-child{
+            font-weight: bold;
+            font-size: 20px;
+        }
     }
 }
