@@ -1,0 +1,10 @@
+$button-size: 60px;
+
+.Button{
+    border: none;
+    background-color: orange;
+    font-size: 20px;
+    font-weight: bold;
+    height: $button-size;
+    width: $button-size;
+}
