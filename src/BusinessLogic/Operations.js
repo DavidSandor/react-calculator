@@ -1,6 +1,6 @@
-const calculate = (operationArray) => {
+const calculate = (operations) => {
 
-    return operationArray;
+    return operations;
 }
 
 export default calculate;

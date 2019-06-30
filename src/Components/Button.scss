@@ -1,4 +1,7 @@
 $button-size: 60px;
+$button-operator-color: lightBlue;
+$button-clear-color: salmon;
+
 
 .Button{
     border: none;
@@ -7,4 +10,12 @@ $button-size: 60px;
     font-weight: bold;
     height: $button-size;
     width: $button-size;
+}
+
+.Button-operator{
+    background-color: $button-operator-color;
+}
+
+.Button-clear{
+    background-color: $button-clear-color;
 }

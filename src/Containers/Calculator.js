@@ -10,13 +10,15 @@ class Calculator extends Component {
         result: '0'
     }
 
-    buttonClickHandler = (buttonInput) => {
+    buttonClickHandler = (buttonInput, type) => {
         
-        const newChain = this.state.operationChain === '0' ? buttonInput : this.state.operationChain + buttonInput;
+        let newChain = this.state.operationChain === '0' ? buttonInput : this.state.operationChain + buttonInput;
+
+        if(type === 'clear') {
+            newChain = '0';
+        }
 
         const newResult = Calculate(newChain);
-
-        console.log(newChain);
 
         this.setState({
             operationChain: newChain,
@@ -25,8 +27,29 @@ class Calculator extends Component {
     }
 
     buttonFactory = (contents) => {
+
+        const getButtonType = (content) => {
+
+            if(Number(content) || content === '0'){
+                return 'digit';
+            }
+            else if(content === '.'){
+                return 'decimal-separator';
+            }
+            else if(content === 'CLR') {
+                return 'clear';
+            }
+            else{
+                return 'operator';
+            }
+        }
+
         const buttons = contents.map(
-            content => <Button key={content} content={content} buttonClickHandler={(event) => this.buttonClickHandler(content)}/>
+            content => <Button 
+                            key={content} 
+                            type={getButtonType(content)} 
+                            content={content} 
+                            buttonClickHandler={this.buttonClickHandler}/>
             )
             
         return buttons;
